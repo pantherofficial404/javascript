@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Permutation Of Object Array</title>
+    <script>
+    function allPossibleCases(arr){
+    if (arr.length === 0) {
+      return [];
+    } else if (arr.length === 1) {
+      return arr[0];
+    } else {
+      var result = [];
+      var allCasesOfRest = this.allPossibleCases(arr.slice(1));
+      for (var c in allCasesOfRest) {
+        for (var i = 0; i < arr[0].length; i++) {
+          result.push(arr[0][i] + allCasesOfRest[c]);
+        }
+      }
+      return result;
+    }
+  };
+
+  function getObjectKeys(object){
+      return Object.keys(object)
+  }
+  function combinations(object){
+    //   All The Properties From The Objects
+    keys = getObjectKeys(object)
+    if(keys.length===0){
+        console.log("Object is Empty")
+        return 0;
+    }
+    // Now We Will Find All The Array From The Objects
+    var data = []
+    if(keys.length>0){
+        for(var i=0;i<keys.length;i++){
+            if(Array.isArray(object[keys[i]])){
+                data.push(object[keys[i]])
+            }
+        }
+    }
+    if(data.length>0){
+        if(data.length==1){
+            console.log(data[0])
+        }else{
+            var result = allPossibleCases(data)
+            console.log(result)
+        }
+    }else{
+        console.log("No Array Found In Object")
+    }
+  };
+  var colors = ['Red', 'Green', 'Blue'];
+  var size = ['M', 'L', 'XL'];
+  var de = ['M', 'L', 'XL'];
+  var test =['Solid', 'checked', 'printed'] 
+  var array1={colors,size,test,de}
+  console.log(combinations(array1))
+    </script>
+</head>
+<body>
+  <p>Open Console For The Result</p>
+</body>
+</html>
